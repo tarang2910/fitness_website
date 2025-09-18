@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Hub - Transform Your Life</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js" defer></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    
+    <div id="loading" class="fixed inset-0 flex items-center justify-center bg-gray-50 z-50">
+        <div class="flex flex-col items-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-4"></div>
+            <div class="text-xl font-semibold text-gray-700">Loading...</div>
+        </div>
+    </div>
+
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600 flex items-center">
+                <svg class="w-8 h-8 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                Fitness Hub
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a id="home-link" href="#banner" class="text-gray-600 hover:text-indigo-600 transition duration-300">Home</a>
+                <a href="#workouts" class="text-gray-600 hover:text-indigo-600 transition duration-300">Workouts</a>
+                <a href="#trainers" class="text-gray-600 hover:text-indigo-600 transition duration-300">Trainers</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 transition duration-300">Testimonials</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition duration-300">Contact</a>
+                <a id="dashboard-link" href="#" class="hidden text-gray-600 hover:text-indigo-600 transition duration-300">Dashboard</a>
+            </div>
+            <button id="get-started-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-indigo-700 transition duration-300 md:block">Get Started</button>
+            <button id="logout-btn" class="bg-red-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-red-600 transition duration-300 hidden">Logout</button>
+            
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#banner" class="block text-gray-600 hover:text-indigo-600 transition duration-300">Home</a>
+                <a href="#workouts" class="block text-gray-600 hover:text-indigo-600 transition duration-300">Workouts</a>
+                <a href="#trainers" class="block text-gray-600 hover:text-indigo-600 transition duration-300">Trainers</a>
+                <a href="#testimonials" class="block text-gray-600 hover:text-indigo-600 transition duration-300">Testimonials</a>
+                <a href="#contact" class="block text-gray-600 hover:text-indigo-600 transition duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main id="homepage">
+        <section id="banner" class="relative bg-gray-900 text-white py-20 md:py-32 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.pexels.com/photos/791763/pexels-photo-791763.jpeg&auto=format&fit=crop" alt="Fitness banner" class="object-cover w-full h-full opacity-40">
+                <div class="absolute inset-0 bg-black opacity-50"></div>
+            </div>
+            <div class="container mx-auto text-center relative z-10 px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 animate-fade-in">
+                    Transform Your Life <br> With Our Fitness Programs
+                </h1>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto animate-fade-in-delay">
+                    Achieve your goals with personalized workout plans, expert trainers, and a supportive community.
+                </p>
+                <button id="get-started-btn-banner" class="bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transform hover:scale-105 transition duration-300 animate-fade-in-delay-2">Get Started</button>
+            </div>
+        </section>
+
+        <section id="workouts" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Our Workout Programs</h2>
+                <p class="text-gray-600 mb-10">Find a program that fits your goals and lifestyle.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg" alt="Cardio Workout" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-600">Cardio Blast</h3>
+                            <p class="text-gray-600 text-sm mb-4">Improve your cardiovascular health with high-intensity interval training.</p>
+                            <button class="text-indigo-600 font-semibold hover:text-indigo-800 transition duration-300">Learn More →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg" alt="Strength Training" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-600">Strength Training</h3>
+                            <p class="text-gray-600 text-sm mb-4">Build muscle and endurance with our comprehensive strength-building routines.</p>
+                            <button class="text-indigo-600 font-semibold hover:text-indigo-800 transition duration-300">Learn More →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/3822694/pexels-photo-3822694.jpeg" alt="Yoga Class" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-600">Mindful Yoga</h3>
+                            <p class="text-gray-600 text-sm mb-4">Enhance flexibility and reduce stress with our calming yoga and meditation sessions.</p>
+                            <button class="text-indigo-600 font-semibold hover:text-indigo-800 transition duration-300">Learn More →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/703016/pexels-photo-703016.jpeg" alt="HIIT Workout" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-600">HIIT Workouts</h3>
+                            <p class="text-gray-600 text-sm mb-4">Maximize calorie burn in minimum time with our powerful HIIT sessions.</p>
+                            <button class="text-indigo-600 font-semibold hover:text-indigo-800 transition duration-300">Learn More →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg" alt="Pilates Class" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-600">Dynamic Pilates</h3>
+                            <p class="text-gray-600 text-sm mb-4">Strengthen your core and improve posture with our focused Pilates classes.</p>
+                            <button class="text-indigo-600 font-semibold hover:text-indigo-800 transition duration-300">Learn More →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/4761663/pexels-photo-4761663.jpeg" alt="Boxing Training" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-600">Boxing Fitness</h3>
+                            <p class="text-gray-600 text-sm mb-4">Punch and jab your way to fitness with high-energy boxing training.</p>
+                            <button class="text-indigo-600 font-semibold hover:text-indigo-800 transition duration-300">Learn More →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trainers" class="py-16 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Meet Our Expert Trainers</h2>
+                <p class="text-gray-600 mb-10">Our certified trainers are here to guide you on your fitness journey.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-lg shadow-md p-6 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/3768911/pexels-photo-3768911.jpeg" alt="Jane Doe" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                        <h3 class="font-bold text-xl text-indigo-600">Jane Doe</h3>
+                        <p class="text-gray-600 text-sm mb-2">Specialty: Strength & Conditioning</p>
+                        <p class="text-gray-500 text-xs">5+ years experience</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md p-6 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/2383009/pexels-photo-2383009.jpeg" alt="John Smith" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                        <h3 class="font-bold text-xl text-indigo-600">John Smith</h3>
+                        <p class="text-gray-600 text-sm mb-2">Specialty: Yoga & Flexibility</p>
+                        <p class="text-gray-500 text-xs">8+ years experience</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md p-6 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/3823489/pexels-photo-3823489.jpeg" alt="Sarah Lee" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                        <h3 class="font-bold text-xl text-indigo-600">Sarah Lee</h3>
+                        <p class="text-gray-600 text-sm mb-2">Specialty: HIIT & Cardio</p>
+                        <p class="text-gray-500 text-xs">6+ years experience</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md p-6 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg" alt="Mike Chen" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                        <h3 class="font-bold text-xl text-indigo-600">Mike Chen</h3>
+                        <p class="text-gray-600 text-sm mb-2">Specialty: Weight Loss</p>
+                        <p class="text-gray-500 text-xs">7+ years experience</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md p-6 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/3768125/pexels-photo-3768125.jpeg" alt="Maria Rodriguez" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                        <h3 class="font-bold text-xl text-indigo-600">Maria Rodriguez</h3>
+                        <p class="text-gray-600 text-sm mb-2">Specialty: Pilates & Core</p>
+                        <p class="text-gray-500 text-xs">4+ years experience</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md p-6 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" alt="David Kim" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                        <h3 class="font-bold text-xl text-indigo-600">David Kim</h3>
+                        <p class="text-gray-600 text-sm mb-2">Specialty: Sports Performance</p>
+                        <p class="text-gray-500 text-xs">9+ years experience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">What Our Clients Say</h2>
+                <p class="text-gray-600 mb-10">See how we've helped others on their fitness journey.</p>
+                <div class="relative max-w-4xl mx-auto">
+                    <div id="testimonials-container" class="flex overflow-x-auto snap-x snap-mandatory space-x-8 scrollbar-hide py-4">
+                        <div class="min-w-[320px] bg-white rounded-lg shadow-md p-8 snap-center transform transition duration-300 hover:shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg" alt="Client 1" class="w-14 h-14 rounded-full mr-4 object-cover">
+                                <div>
+                                    <p class="font-semibold text-gray-800">Jessica A.</p>
+                                    <p class="text-sm text-gray-500">Fitness Enthusiast</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"The workout programs here are incredible. I've seen amazing results in just a few weeks!"</p>
+                        </div>
+                        <div class="min-w-[320px] bg-white rounded-lg shadow-md p-8 snap-center transform transition duration-300 hover:shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg" alt="Client 2" class="w-14 h-14 rounded-full mr-4 object-cover">
+                                <div>
+                                    <p class="font-semibold text-gray-800">Mark T.</p>
+                                    <p class="text-sm text-gray-500">Busy Professional</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"The flexibility and variety of workouts fit perfectly into my busy schedule. Highly recommend!"</p>
+                        </div>
+                        <div class="min-w-[320px] bg-white rounded-lg shadow-md p-8 snap-center transform transition duration-300 hover:shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.pexels.com/photos/3823488/pexels-photo-3823488.jpeg" alt="Client 3" class="w-14 h-14 rounded-full mr-4 object-cover">
+                                <div>
+                                    <p class="font-semibold text-gray-800">Samantha D.</p>
+                                    <p class="text-sm text-gray-500">Weight Loss Success</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"I never thought I could achieve my weight loss goals, but the trainers and community here made it possible."</p>
+                        </div>
+                        <div class="min-w-[320px] bg-white rounded-lg shadow-md p-8 snap-center transform transition duration-300 hover:shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg" alt="Client 4" class="w-14 h-14 rounded-full mr-4 object-cover">
+                                <div>
+                                    <p class="font-semibold text-gray-800">John P.</p>
+                                    <p class="text-sm text-gray-500">Strength Seeker</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"Finally found a program that truly pushes my limits and helps me build strength like never before."</p>
+                        </div>
+                        <div class="min-w-[320px] bg-white rounded-lg shadow-md p-8 snap-center transform transition duration-300 hover:shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg" alt="Client 5" class="w-14 h-14 rounded-full mr-4 object-cover">
+                                <div>
+                                    <p class="font-semibold text-gray-800">Maria S.</p>
+                                    <p class="text-sm text-gray-500">Yoga Practitioner</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"The online yoga sessions are amazing. It's like having a private class in my living room!"</p>
+                        </div>
+                    </div>
+                    <button id="prev-btn" class="absolute top-1/2 left-0 -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800 transition duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="next-btn" class="absolute top-1/2 right-0 -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800 transition duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Get in Touch</h2>
+                <p class="text-gray-600 mb-10">We would love to hear from you.</p>
+                <div class="max-w-lg mx-auto bg-gray-50 p-8 rounded-lg shadow-lg">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <input type="text" id="contact-name" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition duration-300" required>
+                        </div>
+                        <div>
+                            <input type="email" id="contact-email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition duration-300" required>
+                        </div>
+                        <div>
+                            <textarea id="contact-message" rows="4" placeholder="Your Message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition duration-300" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300">Send Message</button>
+                        <div id="contact-success" class="hidden text-green-600 text-sm mt-2">Message sent successfully!</div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="dashboard" class="hidden py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Welcome to Your Dashboard</h2>
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+                <div class="flex items-center mb-6">
+                    <div class="w-24 h-24 bg-indigo-600 rounded-full mr-6 flex items-center justify-center">
+                        <span class="text-white text-2xl font-bold" id="dashboard-avatar"></span>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-2xl font-semibold text-gray-800">
+                            <span id="dashboard-user-name"></span>
+                        </h3>
+                        <p class="text-gray-600">Email: <span id="dashboard-email"></span></p>
+                        <p class="text-gray-600">Mobile: <span id="dashboard-mobile"></span></p>
+                        <p class="text-gray-600">Age: <span id="dashboard-age"></span></p>
+                    </div>
+                </div>
+                <p class="text-gray-700 text-lg mb-6">
+                    This is your personal space. You can view your progress, track your workouts, and manage your account here.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-indigo-600">Workouts Completed</h4>
+                        <p class="text-2xl font-bold">0</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-indigo-600">Goals Achieved</h4>
+                        <p class="text-2xl font-bold">0</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-indigo-600">Days Active</h4>
+                        <p class="text-2xl font-bold">1</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="auth-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 shadow-xl max-w-sm w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+            <div class="flex justify-end">
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600 transition duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">Join Us</h3>
+                <p class="text-gray-500 text-sm">Sign in or sign up to get started</p>
+            </div>
+            
+            <div class="flex mb-4 border-b border-gray-200">
+                <button id="login-tab" class="flex-1 py-2 text-center text-sm font-medium border-b-2 border-indigo-600 text-indigo-600 transition-colors duration-300">Login</button>
+                <button id="signup-tab" class="flex-1 py-2 text-center text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 transition-colors duration-300">Sign Up</button>
+            </div>
+
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <input type="email" id="login-email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors duration-300" required>
+                </div>
+                <div>
+                    <input type="password" id="login-password" placeholder="Password" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors duration-300" required>
+                </div>
+                <p id="login-error" class="text-red-500 text-sm hidden"></p>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-md hover:bg-indigo-700 transition-colors duration-300">Log In</button>
+            </form>
+
+            <form id="signup-form" class="space-y-4 hidden">
+                <div>
+                    <input type="text" id="signup-full-name" placeholder="Full Name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors duration-300" required>
+                </div>
+                <div>
+                    <input type="email" id="signup-email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors duration-300" required>
+                </div>
+                <div>
+                    <input type="tel" id="signup-mobile" placeholder="Mobile Number" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors duration-300" required>
+                </div>
+                <div>
+                    <input type="number" id="signup-age" placeholder="Age" min="13" max="120" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors duration-300" required>
+                </div>
+                <div>
+                    <input type="password" id="signup-password" placeholder="Password" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors duration-300" required>
+                </div>
+                <p id="signup-error" class="text-red-500 text-sm hidden"></p>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-md hover:bg-indigo-700 transition-colors duration-300">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h4 class="text-xl font-bold text-white mb-1 flex items-center justify-center md:justify-start">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Fitness Hub
+                    </h4>
+                    <p class="text-sm">&copy; 2024 All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4 mb-4 md:mb-0">
+                    <a href="#" class="text-gray-300 hover:text-white transition duration-300 transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.872v-6.985h-2.54V12h2.54V9.797c0-2.505 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.77l-.443 2.894h-2.327v6.985C18.343 21.128 22 16.991 22 12z"></path></svg>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition duration-300 transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition duration-300 transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                </div>
+                <p class="text-sm mt-4 md:mt-0">Transform your life with expert guidance</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* Custom Animations and Styles */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+}
+
+.animate-fade-in-delay {
+    animation: fade-in 0.8s ease-out 0.3s both;
+}
+
+.animate-fade-in-delay-2 {
+    animation: fade-in 0.8s ease-out 0.6s both;
+}
+
+/* Custom Scrollbar Styles */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ======================================= */
+/* 🚨 SLEEK FITNESS TEMPLATE START 🚨 */
+/* ======================================= */
+
+/* 1. DARK MODE BASE (Overriding Tailwind Gray Classes) */
+body {
+    background-color: #121212 !important; /* Near-Black for premium feel */
+    color: #f0f0f0 !important; /* Light Text */
+}
+.bg-gray-50 {
+    background-color: #1e1e1e !important; /* Slightly lighter dark for cards/sections */
+}
+.bg-white {
+    background-color: #1e1e1e !important; /* Overriding white cards */
+}
+.text-gray-800, .text-gray-600 {
+    color: #e0e0e0 !important; /* Main text override */
+}
+.text-gray-500 {
+    color: #a0a0a0 !important; /* Secondary text override */
+}
+.bg-gray-900 {
+    background-color: #121212 !important;
+}
+
+
+/* 2. PRIMARY COLOR OVERRIDES (Deep Teal Accent) */
+/* Accent Color: #00bf8f (Deep Teal Green) */
+
+/* Target: .bg-indigo-600 (Buttons, Dashboard Avatar BG) */
+.bg-indigo-600, .bg-indigo-700, .bg-gray-700 {
+    background-color: #00bf8f !important; /* Deep Teal */
+    background: #00bf8f !important; 
+    color: #121212 !important; /* Ensure text on teal is dark */
+}
+
+/* Target: .hover:bg-indigo-700 */
+.hover\:bg-indigo-700:hover {
+    background-color: #009973 !important; /* Slightly darker teal on hover */
+}
+
+/* Target: .text-indigo-600 (Logo, Links, Stats) */
+.text-indigo-600 {
+    color: #00bf8f !important; /* Deep Teal */
+}
+
+/* Target: .hover:text-indigo-600 */
+.hover\:text-indigo-600:hover {
+    color: #00bf8f !important;
+}
+
+/* Target: .border-indigo-600 (Modal tabs) */
+.border-indigo-600 {
+    border-color: #00bf8f !important;
+}
+
+
+/* 3. CUSTOM ELEMENT STYLES */
+
+/* Custom Focus Styles */
+input:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(0, 191, 143, 0.5) !important; /* Teal focus ring */
+}
+
+/* Custom Gradient Fixes - Using Teal-Black Gradient */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #00bf8f 0%, #1e1e1e 100%) !important; 
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 191, 143, 0.5) !important; 
+}
+
+/* Form Validation Styles */
+.input-error {
+    border-color: #ff416c !important; 
+    background-color: #33151f !important;
+    color: #f0f0f0 !important;
+}
+
+.input-success {
+    border-color: #00bf8f !important; 
+    background-color: #15332f !important;
+    color: #f0f0f0 !important;
+}
+
+/* ======================================= */
+/* 🚨 SLEEK FITNESS TEMPLATE END 🚨 */
+/* ======================================= */
+
+
+/* Remaining General Styles */
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+.modal-enter {
+    transform: scale(0.95);
+    opacity: 0;
+}
+.modal-enter-active {
+    transform: scale(1);
+    opacity: 1;
+    transition: all 0.3s ease-out;
+}
+.modal-exit {
+    transform: scale(1);
+    opacity: 1;
+}
+.modal-exit-active {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease-in;
+}
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    .grid {
+        gap: 1rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}
+@media (prefers-contrast: high) {
+    .text-gray-600 {
+        color: #000000;
+    }
+    .bg-gray-50 {
+        background-color: #ffffff;
+    }
+}
+@media print {
+    nav, footer, #auth-modal, button {
+        display: none !important;
+    }
+    * {
+        color: black !important;
+        background: white !important;
+    }
+}
